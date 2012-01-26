@@ -1,0 +1,5 @@
+# cat=basic/enable; type=string; label=Executed command:Command that will be executed (e.g. a login shell can be defined with "/bin/bash -l -c '###CLI_SCRIPT###'"). ###CLI_SCRIPT### will be replaced with "PATH_typo3 . 'cli_dispatch.phpsh scheduler'". Only required under special circumstances - leave empty if you are not sure about it.
+execCmd =
+
+# cat=basic/enable; type=boolean; label=Debug:Enable this option to get some debug information (output and return status - for further information see exec()-function in PHP documentation) in frontend. Should be disabled in production environment!
+debug = 0
