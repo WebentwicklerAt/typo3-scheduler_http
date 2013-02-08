@@ -34,7 +34,7 @@ class tx_schedulerhttp_eid {
 	function eid_main() {
 		$this->conf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
 		
-		$execCmd = PATH_typo3 . 'cli_dispatch.phpsh scheduler';
+		$execCmd = PATH_typo3 . 'cli_dispatch.phpsh scheduler 2>&1';
 		if (is_array($this->conf) && array_key_exists('debug', $this->conf) && strlen($this->conf['execCmd'])) {
 			$execCmd = str_replace('###CLI_SCRIPT###', $execCmd, $this->conf['execCmd']);
 		}
