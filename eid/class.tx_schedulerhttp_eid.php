@@ -31,16 +31,15 @@ class tx_schedulerhttp_eid {
 	var $scriptRelPath = 'eid/class.tx_schedulerhttp_eid.php';	// Path to this script relative to the extension dir.
 	var $extKey        = 'scheduler_http';	// The extension key.
 	
-	function eid_main() {
+	public function eid_main() {
 		$this->conf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
 		
-		$execCmd = PATH_typo3 . 'cli_dispatch.phpsh scheduler 2>&1';
-		if (is_array($this->conf) && array_key_exists('debug', $this->conf) && strlen($this->conf['execCmd'])) {
-			$execCmd = str_replace('###CLI_SCRIPT###', $execCmd, $this->conf['execCmd']);
+		if (is_array($this->conf) && array_key_exists('execManual', $this->conf) && $this->conf['execManual']) {
+			$output = $this->execManual();
 		}
-		
-		exec($execCmd, $output, $return_var);
-		$output['return_var'] = $return_var;
+		else {
+			$output = $this->execCli();
+		}
 		
 		if (is_array($this->conf) && array_key_exists('debug', $this->conf) && $this->conf['debug']) {
 			t3lib_utility_Debug::debug($output, $this->extKey);
@@ -49,6 +48,74 @@ class tx_schedulerhttp_eid {
 			t3lib_div::devLog(t3lib_div::arrayToLogString($output), $this->extKey);
 		}
 	}
+	
+	protected function execManual() {
+		// setup
+		$output = array();
+		tslib_eidtools::connectDB();
+		
+		$LANG = t3lib_div::makeInstance('language');
+		$LANG->init($GLOBALS['BE_USER'] ? $GLOBALS['BE_USER']->uc['lang'] : 'default');
+		$LANG->includeLLFile(PATH_site . 'typo3/sysext/scheduler/mod1/locallang.xml');
+		
+		require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler.php';
+		require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_croncmd.php';
+		require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_croncmd_normalize.php';
+		require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_execution.php';
+		require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_failedexecutionexception.php';
+		require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_task.php';
+		$scheduler = t3lib_div::makeInstance('tx_scheduler');
+		
+		// code taken, merged and modified from EXT:scheduler/class.tx_scheduler_module.php and EXT:scheduler/cli/scheduler_cli_dispatch.php
+		$hasTask = TRUE;
+		do {
+			try {
+				$task = $scheduler->fetchTask();
+				$class = get_class($task);
+				
+				$hasTask = TRUE;
+				try {
+					$result = $scheduler->executeTask($task);
+					if ($result) {
+						$output[] = sprintf($LANG->getLL('msg.executed'), $class);
+					}
+					else {
+						$output[] = sprintf($LANG->getLL('msg.notExecuted'), $class);
+					}
+				}
+				catch (Exception $e) {
+					$output[] = sprintf($LANG->getLL('msg.executionFailed'), $class, $e->getMessage());
+					continue;
+				}
+			}
+				// There are no more tasks, quit the run
+			catch (OutOfBoundsException $e) {
+				$hasTask = FALSE;
+			}
+				// The task object was not valid
+			catch (UnexpectedValueException $e) {
+				$output[] = sprintf($LANG->getLL('msg.executionFailed'), $class, $e->getMessage());
+				continue;
+			}
+		} while ($hasTask);
+		
+		$scheduler->recordLastRun('manual');
+		
+		return $output;
+	}
+	
+	protected function execCli() {
+		$execCmd = PATH_typo3 . 'cli_dispatch.phpsh scheduler 2>&1';
+		if (is_array($this->conf) && array_key_exists('execCmd', $this->conf) && strlen($this->conf['execCmd'])) {
+			$execCmd = str_replace('###CLI_SCRIPT###', $execCmd, $this->conf['execCmd']);
+		}
+		
+		exec($execCmd, $output, $return_var);
+		$output['return_var'] = $return_var;
+		
+		return $output;
+	}
+	
 }
 
 

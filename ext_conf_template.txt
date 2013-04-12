@@ -3,3 +3,6 @@ execCmd =
 
 # cat=basic/enable; type=boolean; label=Debug:Enable this option to get some debug information (output and return status - for further information see exec()-function in PHP documentation) in frontend. Should be disabled in production environment!
 debug = 0
+
+# cat=basic/enable; type=boolean; label=Execute manual (BETA!):Enable this option if the tasks should be executed 'manual' and not through CLI.
+execManual = 0
