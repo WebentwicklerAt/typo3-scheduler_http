@@ -1,0 +1,11 @@
+scheduler_http 1.2.0, 2013-02-12
+--------------------------------
+- Added option "execManual" and possibility to run GET-Requests as scheduler task.
+
+scheduler_http 1.1.0, 2012-01-22
+--------------------------------
+- Added configuration options "execCmd" and "debug".
+
+scheduler_http 1.0.0, 2010-12-31
+--------------------------------
+- Initial Upload.

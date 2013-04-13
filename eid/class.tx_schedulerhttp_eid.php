@@ -27,9 +27,10 @@ if (!defined ('PATH_typo3conf')) {
 }
 
 class tx_schedulerhttp_eid {
-	var $prefixId      = 'tx_schedulerhttp_eid';		// Same as class name
-	var $scriptRelPath = 'eid/class.tx_schedulerhttp_eid.php';	// Path to this script relative to the extension dir.
-	var $extKey        = 'scheduler_http';	// The extension key.
+	
+	var $prefixId      = 'tx_schedulerhttp_eid';
+	var $scriptRelPath = 'eid/class.tx_schedulerhttp_eid.php';
+	var $extKey        = 'scheduler_http';
 	
 	public function eid_main() {
 		$this->conf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
