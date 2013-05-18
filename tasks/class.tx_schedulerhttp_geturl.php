@@ -39,4 +39,13 @@ class tx_schedulerhttp_geturl extends tx_scheduler_Task {
 		return false;
 	}
 	
+	public function getAdditionalInformation() {
+		$message = sprintf(
+			$GLOBALS['LANG']->sL('LLL:EXT:scheduler_http/locallang.xml:label.tx_schedulerhttp_geturl.additionalInformationUrl'),
+			$this->url
+		);
+		
+		return $message;
+	}
+	
 }
