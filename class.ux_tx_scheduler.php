@@ -22,30 +22,20 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class tx_schedulerhttp_geturl extends tx_scheduler_Task {
+class ux_tx_scheduler extends tx_scheduler {
 	
-	public $url;
-	
-	/**
-	 * scheduler execute function
-	 */
-	public function execute() {
-		$result = t3lib_div::getUrl($this->url);
-		
-		if ($result !== false) {
-			return true;
+	public function __construct() {
+			// Get configuration from the extension manager
+		$this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['scheduler']);
+		if (empty($this->extConf['maxLifetime'])) {
+			$this->extConf['maxLifetime'] = 1440;
 		}
 		
-		return false;
-	}
-	
-	public function getAdditionalInformation() {
-		$message = sprintf(
-			$GLOBALS['LANG']->sL('LLL:EXT:scheduler_http/locallang.xml:label.tx_schedulerhttp_geturl.additionalInformationUrl'),
-			$this->url
-		);
-		
-		return $message;
+		// there's no BE_USER
+		$this->extConf['enableBELog'] = false;
+
+			// Clean up the serialized execution arrays
+		$this->cleanExecutionArrays();
 	}
 	
 }

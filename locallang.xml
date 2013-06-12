@@ -7,9 +7,11 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="label.tx_schedulerhttp_geturl.url">URL</label>
+			<label index="label.tx_schedulerhttp_geturl.additionalInformationUrl">URL: %s</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="label.tx_schedulerhttp_geturl.url">URL</label>
+			<label index="label.tx_schedulerhttp_geturl.additionalInformationUrl">URL: %s</label>
 		</languageKey>
 	</data>
 </T3locallang>
