@@ -11,6 +11,11 @@
 ChangeLog
 =========
 
+scheduler_http 1.3.1, 2015-03-04
+--------------------------------
+- Added access list.
+- Code clean-up.
+
 scheduler_http 1.3.0, 2015-03-04
 --------------------------------
 - Use namespaces for native compatibility with TYPO3 CMS 6.2+.

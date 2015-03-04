@@ -20,6 +20,11 @@ if (!defined ('PATH_typo3conf')) {
 	die ('Access denied: eID only.');
 }
 
+/**
+ * Scheduler task doing GET-Requests.
+ *
+ * @author Gernot Leitgab <typo3@webentwickler.at>
+ */
 class SchedulerHttpEid {
 
 	/**
@@ -36,6 +41,11 @@ class SchedulerHttpEid {
 	 */
 	protected $settings;
 
+	/**
+	 * Main eID method
+	 *
+	 * @return void
+	 */
 	public function eid_main() {
 		$this->settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
 
@@ -67,6 +77,11 @@ class SchedulerHttpEid {
 		}
 	}
 
+	/**
+	 * Returns if accessing host is within access list
+	 *
+	 * @return bool
+	 */
 	protected function isAccessAllowed() {
 		return (
 			GeneralUtility::cmpIP(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $this->settings['accessList']) ||
@@ -74,6 +89,13 @@ class SchedulerHttpEid {
 		);
 	}
 
+	/**
+	 * Executes scheduler the same way it is done in backend module
+	 *
+	 * @param integer $taskId ID of scheduler task
+	 * @param boolean $force Signals if execution should be forced
+	 * @return array
+	 */
 	protected function execManual($taskId, $force) {
 		// setup
 		$output = array();
@@ -82,12 +104,6 @@ class SchedulerHttpEid {
 		$LANG->init($GLOBALS['BE_USER'] ? $GLOBALS['BE_USER']->uc['lang'] : 'default');
 		$LANG->includeLLFile(PATH_site . 'typo3/sysext/scheduler/mod1/locallang.xlf');
 
-		#require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler.php';
-		#require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_croncmd.php';
-		#require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_croncmd_normalize.php';
-		#require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_execution.php';
-		#require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_failedexecutionexception.php';
-		#require_once PATH_site . 'typo3/sysext/scheduler/class.tx_scheduler_task.php';
 		$scheduler = GeneralUtility::makeInstance('TYPO3\\CMS\\Scheduler\\Scheduler');
 
 		// code taken, merged and modified from EXT:scheduler/Class/Controller/SchedulerModuleController.php and EXT:scheduler/cli/scheduler_cli_dispatch.php
@@ -152,6 +168,13 @@ class SchedulerHttpEid {
 		return $output;
 	}
 
+	/**
+	 * Executes scheduler through shell
+	 *
+	 * @param integer $taskId ID of scheduler task
+	 * @param boolean $force Signals if execution should be forced
+	 * @return mixed
+	 */
 	protected function execCli($taskId, $force) {
 		$execCmd = PATH_typo3 . 'cli_dispatch.phpsh scheduler';
 		if ($taskId > 0) {
