@@ -51,7 +51,12 @@ class SchedulerHttpEid {
 
 		if (is_array($this->settings) && array_key_exists('accessList', $this->settings) && $this->isAccessAllowed()) {
 			$taskId = (int)GeneralUtility::_GP('i');
-			$force = (bool)GeneralUtility::_GP('f');
+			if (is_array($this->settings) && array_key_exists('allowForce', $this->settings) && $this->settings['allowForce']) {
+				$force = (bool)GeneralUtility::_GP('f');
+			}
+			else {
+				$force = FALSE;
+			}
 
 			if (is_array($this->settings) && array_key_exists('execManual', $this->settings) && $this->settings['execManual']) {
 				$output = $this->execManual($taskId, $force);
