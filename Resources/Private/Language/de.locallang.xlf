@@ -15,6 +15,9 @@
 			<trans-unit id="label.getUrl.additionalInformationUrl">
 				<target>URL: %s</target>
 			</trans-unit>
+			<trans-unit id="access.denied">
+				<target>Zugriff verweigert für %s.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

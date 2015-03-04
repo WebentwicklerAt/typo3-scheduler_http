@@ -15,6 +15,9 @@
 			<trans-unit id="label.getUrl.additionalInformationUrl">
 				<source>URL: %s</source>
 			</trans-unit>
+			<trans-unit id="access.denied">
+				<source>Access denied for %s.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

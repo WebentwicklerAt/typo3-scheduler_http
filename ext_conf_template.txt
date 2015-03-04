@@ -1,6 +1,9 @@
 # cat=basic/enable; type=string; label=Executed command:Command that will be executed (e.g. a login shell can be defined with "/bin/bash -l -c '###CLI_SCRIPT###'"). ###CLI_SCRIPT### will be replaced with "PATH_typo3 . 'cli_dispatch.phpsh scheduler'". Only required under special circumstances - leave empty if you are not sure about it.
 execCmd =
 
+# cat=basic/enable; type=string; label=Access list:Comma-list of IP-addresses and/or hostnames allowed to run scheduler via HTTP. *-wildcard allowed but cannot be part of a number/string (eg. 192.168.*.* or myhost.*.com => correct, 192.168.*1.* or myhost.*domain.com => wrong).
+accessList = 127.0.0.1
+
 # cat=basic/enable; type=boolean; label=Debug:Enable this option to get some debug information (output and return status - for further information see exec()-function in PHP documentation) in frontend. Should be disabled in production environment!
 debug = 0
 

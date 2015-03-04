@@ -39,17 +39,23 @@ class SchedulerHttpEid {
 	public function eid_main() {
 		$this->settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
 
-		$taskId = (int)GeneralUtility::_GP('i');
-		$force = (bool)GeneralUtility::_GP('f');
+		if (is_array($this->settings) && array_key_exists('accessList', $this->settings) && $this->isAccessAllowed()) {
+			$taskId = (int)GeneralUtility::_GP('i');
+			$force = (bool)GeneralUtility::_GP('f');
 
-		if (is_array($this->settings) && array_key_exists('execManual', $this->settings) && $this->settings['execManual']) {
-			$output = $this->execManual($taskId, $force);
+			if (is_array($this->settings) && array_key_exists('execManual', $this->settings) && $this->settings['execManual']) {
+				$output = $this->execManual($taskId, $force);
+			} else {
+				$output = $this->execCli($taskId, $force);
+			}
 		}
 		else {
-			$output = $this->execCli($taskId, $force);
+			$output = sprintf(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('access.denied', $this->extKey), GeneralUtility::getIndpEnv('REMOTE_ADDR'));
 		}
 
 		if (is_array($this->settings) && array_key_exists('debug', $this->settings) && $this->settings['debug']) {
+			\TYPO3\CMS\Core\Utility\DebugUtility::debug($output, $this->extKey);
+
 			$logger = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Log\\LogManager')->getLogger(__CLASS__);
 			$logger->log(
 				\TYPO3\CMS\Core\Log\LogLevel::INFO,
@@ -59,6 +65,13 @@ class SchedulerHttpEid {
 		if (TYPO3_DLOG) {
 			GeneralUtility::devLog(GeneralUtility::arrayToLogString($output), __CLASS__);
 		}
+	}
+
+	protected function isAccessAllowed() {
+		return (
+			GeneralUtility::cmpIP(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $this->settings['accessList']) ||
+			GeneralUtility::cmpFQDN(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $this->settings['accessList'])
+		);
 	}
 
 	protected function execManual($taskId, $force) {

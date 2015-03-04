@@ -21,6 +21,7 @@ Invoke scheduler via HTTP-Request
 If you want to invoke the scheduler via HTTP-Request you can set some configuration in the "Extension manager" for this extension:
 
 * execCmd: With that option you can e.g. initialize a login shell with environment variables. This option requires system knowledge and is for advanced users only.
+* accessList: A list of IP-addresses and/or hostnames allowed to run scheduler via HTTP can be specified. *-wildcard allowed but cannot be part of a number/string (eg. 192.168.*.* or myhost.*.com => correct, 192.168.*1.* or myhost.*domain.com => wrong). If list is "*" no check is done and the function returns TRUE immediately. An empty list always returns FALSE.
 * debug: Activates debug information in TYPO3 frontend output to determine possible configuration errors.
 * execManual: Execution of tasks will be done by the webserver and without CLI, the same way you can run tasks in "Scheduler" module by hand. Maybe some exotic tasks require CLI environment, but this should be the way you go.
 
