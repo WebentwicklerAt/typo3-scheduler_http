@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-03-03T19:50:00Z" product-name="scheduler_http">
+		<header/>
+		<body>
+			<trans-unit id="getUrlTask.name">
+				<target>Get URL</target>
+			</trans-unit>
+			<trans-unit id="getUrlTask.description">
+				<target>Requests configured URL</target>
+			</trans-unit>
+			<trans-unit id="label.getUrlTaskAdditionalFieldProvider.url">
+				<target>URL</target>
+			</trans-unit>
+			<trans-unit id="label.getUrl.additionalInformationUrl">
+				<target>URL: %s</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

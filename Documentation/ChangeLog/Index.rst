@@ -1,3 +1,16 @@
+﻿.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
+
+.. include:: ../Includes.txt
+
+
+.. _changelog:
+
+ChangeLog
+=========
+
 scheduler_http 1.3.0, 2015-03-04
 --------------------------------
 - Use namespaces for native compatibility with TYPO3 CMS 6.2+.
