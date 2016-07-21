@@ -20,7 +20,6 @@ namespace WebentwicklerAt\SchedulerHttp\Task;
  * @author Gernot Leitgab <typo3@webentwickler.at>
  */
 class GetUrlTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
-
 	/**
 	 * URL
 	 *
@@ -56,5 +55,4 @@ class GetUrlTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
 		return $message;
 	}
-
 }

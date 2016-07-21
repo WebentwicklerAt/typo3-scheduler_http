@@ -20,7 +20,6 @@ namespace WebentwicklerAt\SchedulerHttp\Task;
  * @author Gernot Leitgab <typo3@webentwickler.at>
  */
 class GetUrlTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface {
-
 	/**
 	 * Default field values
 	 *
@@ -79,5 +78,4 @@ class GetUrlTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Addition
 	public function saveAdditionalFields(array $submittedData, \TYPO3\CMS\Scheduler\Task\AbstractTask $task) {
 		$task->url = $submittedData['url'];
 	}
-
 }

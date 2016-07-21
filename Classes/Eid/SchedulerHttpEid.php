@@ -26,7 +26,6 @@ if (!defined ('PATH_typo3conf')) {
  * @author Gernot Leitgab <typo3@webentwickler.at>
  */
 class SchedulerHttpEid {
-
 	/**
 	 * Extension key
 	 *
@@ -126,12 +125,12 @@ class SchedulerHttpEid {
 			// Force the execution of the task even if it is disabled or no execution scheduled
 			if ($force) {
 				$task = $scheduler->fetchTask($taskId);
-				$class = get_class($task);
 			} else {
 				$whereClause = 'uid = ' . $taskId . ' AND nextexecution != 0 AND nextexecution <= ' . $GLOBALS['EXEC_TIME'];
 				list($task) = $scheduler->fetchTasksWithCondition($whereClause);
 			}
 			if ($scheduler->isValidTaskObject($task)) {
+				$class = get_class($task);
 				try {
 					$result = $scheduler->executeTask($task);
 					if ($result) {
@@ -210,13 +209,9 @@ class SchedulerHttpEid {
 
 		return $output;
 	}
-
 }
 
-$boot = function() {
+call_user_func(function () {
 	$schedulerHttpEid = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('WebentwicklerAt\\SchedulerHttp\\Eid\\SchedulerHttpEid');
 	$schedulerHttpEid->eid_main();
-};
-
-$boot();
-unset($boot);
+});

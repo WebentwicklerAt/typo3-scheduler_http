@@ -3,7 +3,7 @@ if (!defined('TYPO3_MODE')) {
 	die('Access denied.');
 }
 
-$boot = function($_EXTKEY) {
+call_user_func(function ($_EXTKEY) {
 	// Adding alternative output engine to eID mechanism
 	$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include'][$_EXTKEY] = 'EXT:' . $_EXTKEY . '/Classes/Eid/SchedulerHttpEid.php';
 
@@ -22,7 +22,4 @@ $boot = function($_EXTKEY) {
 			'className' => 'WebentwicklerAt\\SchedulerHttp\\Xclass\\Scheduler',
 		);
 	}
-};
-
-$boot($_EXTKEY);
-unset($boot);
+}, $_EXTKEY);

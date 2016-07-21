@@ -20,11 +20,8 @@ namespace WebentwicklerAt\SchedulerHttp\Xclass;
  * @author Gernot Leitgab <typo3@webentwickler.at>
  */
 class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler {
-
 	/**
 	 * Constructor, makes sure all derived client classes are included
-	 *
-	 * @return \TYPO3\CMS\Scheduler\Scheduler
 	 */
 	public function __construct() {
 		// Get configuration from the extension manager
@@ -42,5 +39,4 @@ class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler {
 		// Clean up the serialized execution arrays
 		$this->cleanExecutionArrays();
 	}
-
 }
