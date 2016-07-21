@@ -88,10 +88,20 @@ class SchedulerHttpEid {
 	 * @return bool
 	 */
 	protected function isAccessAllowed() {
-		return (
-			GeneralUtility::cmpIP(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $this->settings['accessList']) ||
-			GeneralUtility::cmpFQDN(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $this->settings['accessList'])
-		);
+		$accessList = GeneralUtility::cmpIP(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $this->settings['accessList']) ||
+			GeneralUtility::cmpFQDN(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $this->settings['accessList']);
+
+		$accessToken = true;
+		if (array_key_exists('accessToken', $this->settings) && strlen($this->settings['accessToken'])) {
+			if (GeneralUtility::_GET('access_token') == $this->settings['accessToken']) {
+				$accessToken = true;
+			}
+			else {
+				$accessToken = false;
+			}
+		}
+
+		return $accessList && $accessToken;
 	}
 
 	/**

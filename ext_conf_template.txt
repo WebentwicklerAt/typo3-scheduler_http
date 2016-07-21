@@ -4,6 +4,9 @@ execCmd =
 # cat=basic/enable; type=string; label=Access list:Comma-list of IP-addresses and/or hostnames allowed to run scheduler via HTTP. *-wildcard allowed but cannot be part of a number/string (eg. 192.168.*.* or myhost.*.com => correct, 192.168.*1.* or myhost.*domain.com => wrong).
 accessList = 127.0.0.1
 
+# cat=basic/enable; type=string; label=Access token:If defined parameter "access_token" has to be added to the query string to run scheduler via HTTP (eg. index.php?eID=scheduler_http&access_token=defined_access_token).
+accessToken =
+
 # cat=basic/enable; type=boolean; label=Allow force execution:Enable this option if force execution of single tasks should be allowed.
 allowForce = 0
 
