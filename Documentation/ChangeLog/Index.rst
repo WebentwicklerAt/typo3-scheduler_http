@@ -11,6 +11,13 @@
 ChangeLog
 =========
 
+scheduler_http 1.3.3, 2016-07-21
+--------------------------------
+- Added access token.
+- Added composer.json.
+- Updated version requirements for compatibility with TYPO3 CMS 7 LTS.
+- Code clean-up.
+
 scheduler_http 1.3.2, 2015-03-04
 --------------------------------
 - More granular access list.
