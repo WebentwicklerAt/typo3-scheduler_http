@@ -1,3 +1,16 @@
+﻿.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
+
+.. include:: ../Includes.txt
+
+
+.. _changelog:
+
+ChangeLog
+=========
+
 scheduler_http 1.3.3, 2016-07-21
 --------------------------------
 - Added access token.
