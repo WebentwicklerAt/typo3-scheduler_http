@@ -3,8 +3,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Scheduler HTTP',
 	'description' => 'Invoke scheduler via HTTP-Request and add scheduler tasks doing GET-Requests.',
 	'category' => 'misc',
-	'version' => '1.3.3',
-	'state' => 'beta',
+	'version' => '1.3.4',
+	'state' => 'stable',
 	'uploadfolder' => 0,
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
@@ -12,8 +12,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'author_company' => 'Webentwickler.at',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '6.2.0-7.9.99',
-			'scheduler' => '6.2.0-7.9.99',
+			'typo3' => '6.2.0-8.7.99',
+			'scheduler' => '6.2.0-8.7.99',
 		),
 		'conflicts' => array(
 		),
