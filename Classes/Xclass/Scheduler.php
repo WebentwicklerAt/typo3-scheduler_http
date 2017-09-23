@@ -17,7 +17,7 @@ namespace WebentwicklerAt\SchedulerHttp\Xclass;
 /**
  * Scheduler task doing GET-Requests.
  *
- * @author Gernot Leitgab <typo3@webentwickler.at>
+ * @author Gernot Leitgab <https://webentwickler.at>
  */
 class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler {
 	/**

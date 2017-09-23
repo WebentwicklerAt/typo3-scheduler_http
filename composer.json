@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "Gernot Leitgab",
-            "email": "typo3@webentwickler.at"
+            "homepage": "https://webentwickler.at"
         }
     ],
     "require": {

@@ -23,7 +23,7 @@ if (!defined ('PATH_typo3conf')) {
 /**
  * Scheduler task doing GET-Requests.
  *
- * @author Gernot Leitgab <typo3@webentwickler.at>
+ * @author Gernot Leitgab <https://webentwickler.at>
  */
 class SchedulerHttpEid {
 	/**

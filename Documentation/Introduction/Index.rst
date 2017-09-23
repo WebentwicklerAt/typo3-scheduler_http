@@ -27,5 +27,5 @@ Furthermore this extension provides the possibility to add tasks to your schedul
 Links
 -----
 
-* Forge: http://forge.typo3.org/projects/show/extension-scheduler_http
 * Git-Repository: https://github.com/WebentwicklerAt/typo3-scheduler_http
+* Issues: https://github.com/WebentwicklerAt/typo3-scheduler_http/issues

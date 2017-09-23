@@ -9,7 +9,6 @@ $EM_CONF[$_EXTKEY] = array(
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
 	'author' => 'Gernot Leitgab',
-	'author_email' => 'typo3@webentwickler.at',
 	'author_company' => 'Webentwickler.at',
 	'constraints' => array(
 		'depends' => array(

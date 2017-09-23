@@ -22,12 +22,12 @@ If you want to invoke the scheduler via HTTP-Request you can set some configurat
 
 * execCmd: With that option you can e.g. initialize a login shell with environment variables. This option requires system knowledge and is for advanced users only.
 * accessList: A list of IP-addresses and/or hostnames allowed to run scheduler via HTTP can be specified. *-wildcard allowed but cannot be part of a number/string (eg. 192.168.*.* or myhost.*.com => correct, 192.168.*1.* or myhost.*domain.com => wrong). If list is "*" no check is done and the function returns TRUE immediately. An empty list always returns FALSE.
-* accessToken: An access token, which has to be added as GET-Parameter to the query string to run scheduler via HTTP, can be specified (eg. http://webentwickler.at/index.php?eID=scheduler_http&access_token=defined_access_token). If no or an empty access token is specified the GET-Parameter is ignored.
+* accessToken: An access token, which has to be added as GET-Parameter to the query string to run scheduler via HTTP, can be specified (eg. https://webentwickler.at/index.php?eID=scheduler_http&access_token=defined_access_token). If no or an empty access token is specified the GET-Parameter is ignored.
 * allowForce: Activates force execution of single tasks. Parameters "i" and "f" has to be set on request.
 * debug: Activates debug information in TYPO3 frontend output to determine possible configuration errors.
 * execManual: Execution of tasks will be done by the webserver and without CLI, the same way you can run tasks in "Scheduler" module by hand. Maybe some exotic tasks require CLI environment, but this should be the way you go.
 
-After installing this extension successfully you should run the scheduler via HTTP-Request by hand the first time, for testing purposes. If the URL of your TYPO3 frontend is "http://webentwickler.at/" you have to request "http://webentwickler.at/index.php?eID=scheduler_http" to invoke the scheduler. If everything was OK, the time listed under "Last run" in the "Setup check" of the module "Scheduler" has changed and "return_var" in frontend will be "0".
+After installing this extension successfully you should run the scheduler via HTTP-Request by hand the first time, for testing purposes. If the URL of your TYPO3 frontend is "https://webentwickler.at/" you have to request "https://webentwickler.at/index.php?eID=scheduler_http" to invoke the scheduler. If everything was OK, the time listed under "Last run" in the "Setup check" of the module "Scheduler" has changed and "return_var" in frontend will be "0".
 
 The values of return_var are a bit arbitrary, because they depend on the scripts and operating system (for Linux see http://tldp.org/LDP/abs/html/exitcodes.html#EXITCODESREF) being used.
 
@@ -36,7 +36,7 @@ If everything worked fine you are ready to run the scheduler periodically now, t
 Parameters
 ^^^^^^^^^^
 
-You can specify parameters "i" and "f" to influence execution of scheduler tasks. For example to execute disabled scheduler task with ID "1" run "http://webentwickler.at/index.php?eID=scheduler_http&i=1&f=1".
+You can specify parameters "i" and "f" to influence execution of scheduler tasks. For example to execute disabled scheduler task with ID "1" run "https://webentwickler.at/index.php?eID=scheduler_http&i=1&f=1".
 
 +----------------+---------------+-------------------------------------------------------------+
 | Parameter      | Data type     | Description                                                 |

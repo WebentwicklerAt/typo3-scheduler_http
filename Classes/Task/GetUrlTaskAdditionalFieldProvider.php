@@ -17,7 +17,7 @@ namespace WebentwicklerAt\SchedulerHttp\Task;
 /**
  * Additional BE fields for getUrl task.
  *
- * @author Gernot Leitgab <typo3@webentwickler.at>
+ * @author Gernot Leitgab <https://webentwickler.at>
  */
 class GetUrlTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface {
 	/**
@@ -26,7 +26,7 @@ class GetUrlTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Addition
 	 * @var array
 	 */
 	protected $defaults = array(
-		'url' => 'http://webentwickler.at/',
+		'url' => 'https://webentwickler.at/',
 	);
 
 	/**
