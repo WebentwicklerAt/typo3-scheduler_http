@@ -17,7 +17,7 @@ namespace WebentwicklerAt\SchedulerHttp\Task;
 /**
  * Scheduler task doing GET-Requests.
  *
- * @author Gernot Leitgab <typo3@webentwickler.at>
+ * @author Gernot Leitgab <https://webentwickler.at>
  */
 class GetUrlTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**

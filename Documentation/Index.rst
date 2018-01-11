@@ -30,13 +30,10 @@ scheduler_http
 		forAdmins, forDevelopers, forBeginners
 
 	:Copyright:
-		2010-2015
+		2010-2017
 
 	:Author:
 		Gernot Leitgab
-
-	:Email:
-		typo3@webentwickler.at
 
 	:License:
 		This document is published under the Open Content License
