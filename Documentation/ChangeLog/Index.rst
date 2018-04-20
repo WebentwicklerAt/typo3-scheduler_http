@@ -11,6 +11,10 @@
 ChangeLog
 =========
 
+scheduler_http 1.3.5, 2018-04-20
+--------------------------------
+- Add whitespace to command line parameter to fix compatibility issues.
+
 scheduler_http 1.3.4, 2017-09-23
 --------------------------------
 - Update documentation.
