@@ -23,5 +23,10 @@
         "psr-4": {
             "WebentwicklerAt\\SchedulerHttp\\": "Classes/"
         }
+    },
+    "scripts": {
+        "pack": [
+            "git archive -o ../scheduler_http.zip HEAD"
+        ]
     }
 }

@@ -192,7 +192,7 @@ class SchedulerHttpEid {
 	protected function execCli($taskId, $force) {
 		$execCmd = PATH_typo3 . 'cli_dispatch.phpsh scheduler';
 		if ($taskId > 0) {
-			$execCmd .= ' -i' . $taskId;
+			$execCmd .= ' -i ' . $taskId;
 
 			if ($force) {
 				$execCmd .= ' -f';
