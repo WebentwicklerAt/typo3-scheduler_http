@@ -25,7 +25,6 @@ If you want to invoke the scheduler via HTTP-Request you can set some configurat
 * accessToken: An access token, which has to be added as GET-Parameter to the query string to run scheduler via HTTP, can be specified (eg. https://webentwickler.at/index.php?eID=scheduler_http&access_token=defined_access_token). If no or an empty access token is specified the GET-Parameter is ignored.
 * allowForce: Activates force execution of single tasks. Parameters "i" and "f" has to be set on request.
 * debug: Activates debug information in TYPO3 frontend output to determine possible configuration errors.
-* execManual: Execution of tasks will be done by the webserver and without CLI, the same way you can run tasks in "Scheduler" module by hand. Maybe some exotic tasks require CLI environment, but this should be the way you go.
 
 After installing this extension successfully you should run the scheduler via HTTP-Request by hand the first time, for testing purposes. If the URL of your TYPO3 frontend is "https://webentwickler.at/" you have to request "https://webentwickler.at/index.php?eID=scheduler_http" to invoke the scheduler. If everything was OK, the time listed under "Last run" in the "Setup check" of the module "Scheduler" has changed and "return_var" in frontend will be "0".
 

@@ -11,6 +11,11 @@
 ChangeLog
 =========
 
+scheduler_http 2.0.0, 2020-02-14
+--------------------------------
+- Compatibility with TYPO3 9.5.
+- Remove "execManual" mode.
+
 scheduler_http 1.3.5, 2018-04-20
 --------------------------------
 - Add whitespace to command line parameter to fix compatibility issues.

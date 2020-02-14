@@ -19,24 +19,26 @@ namespace WebentwicklerAt\SchedulerHttp\Xclass;
  *
  * @author Gernot Leitgab <https://webentwickler.at>
  */
-class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler {
-	/**
-	 * Constructor, makes sure all derived client classes are included
-	 */
-	public function __construct() {
-		// Get configuration from the extension manager
-		$this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['scheduler']);
-		if (empty($this->extConf['maxLifetime'])) {
-			$this->extConf['maxLifetime'] = 1440;
-		}
-		if (empty($this->extConf['useAtdaemon'])) {
-			$this->extConf['useAtdaemon'] = 0;
-		}
+class Scheduler extends \TYPO3\CMS\Scheduler\Scheduler
+{
+    /**
+     * Constructor, makes sure all derived client classes are included
+     */
+    public function __construct()
+    {
+        // Get configuration from the extension manager
+        $this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['scheduler']);
+        if (empty($this->extConf['maxLifetime'])) {
+            $this->extConf['maxLifetime'] = 1440;
+        }
+        if (empty($this->extConf['useAtdaemon'])) {
+            $this->extConf['useAtdaemon'] = 0;
+        }
 
-		// there's no BE_USER
-		$this->extConf['enableBELog'] = FALSE;
+        // there's no BE_USER
+        $this->extConf['enableBELog'] = false;
 
-		// Clean up the serialized execution arrays
-		$this->cleanExecutionArrays();
-	}
+        // Clean up the serialized execution arrays
+        $this->cleanExecutionArrays();
+    }
 }

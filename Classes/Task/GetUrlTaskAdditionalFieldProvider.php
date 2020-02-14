@@ -1,6 +1,11 @@
 <?php
 namespace WebentwicklerAt\SchedulerHttp\Task;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface;
+use TYPO3\CMS\Scheduler\Controller\SchedulerModuleController;
+use TYPO3\CMS\Scheduler\Task\AbstractTask;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,63 +24,72 @@ namespace WebentwicklerAt\SchedulerHttp\Task;
  *
  * @author Gernot Leitgab <https://webentwickler.at>
  */
-class GetUrlTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface {
-	/**
-	 * Default field values
-	 *
-	 * @var array
-	 */
-	protected $defaults = array(
-		'url' => 'https://webentwickler.at/',
-	);
+class GetUrlTaskAdditionalFieldProvider implements AdditionalFieldProviderInterface
+{
+    /**
+     * Default field values
+     *
+     * @var array
+     */
+    protected $defaults = [
+        'url' => 'https://webentwickler.at/',
+    ];
 
-	/**
-	 * Add a text field for URL configuration
-	 *
-	 * @param array $taskInfo Reference to the array containing the info used in add/edit task form
-	 * @param \TYPO3\CMS\Scheduler\Task\AbstractTask $task The task object being edited. Null when adding a task!
-	 * @param \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule Reference to the scheduler backend module
-	 * @return array Array containing all the information pertaining to the additional fields
-	 */
-	public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
-		$fieldId = 'url';
+    /**
+     * Add a text field for URL configuration
+     *
+     * @param array $taskInfo Reference to the array containing the info used in add/edit task form
+     * @param AbstractTask $task The task object being edited. Null when adding a task!
+     * @param SchedulerModuleController $schedulerModule Reference to the scheduler backend module
+     * @return array Array containing all the information pertaining to the additional fields
+     */
+    public function getAdditionalFields(
+        array &$taskInfo,
+        $task,
+        SchedulerModuleController $schedulerModule
+    ) {
+        $fieldId = 'url';
 
-		if (!isset($taskInfo[$fieldId])) {
-			$taskInfo[$fieldId] = $this->defaults[$fieldId];
-			if ($schedulerModule->CMD === 'edit') {
-				$taskInfo[$fieldId] = $task->$fieldId;
-			}
-		}
+        if (!isset($taskInfo[$fieldId])) {
+            $taskInfo[$fieldId] = $this->defaults[$fieldId];
+            if ($schedulerModule->CMD === 'edit') {
+                $taskInfo[$fieldId] = $task->$fieldId;
+            }
+        }
 
-		$additionalFields[$fieldId] = array(
-			'code'  => '<input type="text" name="tx_scheduler[' . $fieldId . ']" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo[$fieldId]) . '" size="60" />',
-			'label' => 'LLL:EXT:scheduler_http/Resources/Private/Language/locallang.xlf:label.getUrlTaskAdditionalFieldProvider.' . $fieldId,
-		);
+        $additionalFields[$fieldId] = [
+            'code' => '<input type="text" name="tx_scheduler[' . $fieldId . ']" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo[$fieldId]) . '" size="60" />',
+            'label' => 'LLL:EXT:scheduler_http/Resources/Private/Language/locallang.xlf:label.getUrlTaskAdditionalFieldProvider.' . $fieldId,
+        ];
 
-		return $additionalFields;
-	}
+        return $additionalFields;
+    }
 
-	/**
-	 * @param array $submittedData Reference to the array containing the data submitted by the add/edit task form
-	 * @param \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule Reference to the scheduler backend module
-	 * @return bool TRUE if validation was ok (or selected class is not relevant), FALSE otherwise
-	 */
-	public function validateAdditionalFields(array &$submittedData, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
-		$validData = TRUE;
+    /**
+     * @param array $submittedData Reference to the array containing the data submitted by the add/edit task form
+     * @param SchedulerModuleController $schedulerModule Reference to the scheduler backend module
+     * @return bool TRUE if validation was ok (or selected class is not relevant), FALSE otherwise
+     */
+    public function validateAdditionalFields(
+        array &$submittedData,
+        SchedulerModuleController $schedulerModule
+    ) {
+        $validData = true;
 
-		if (!\TYPO3\CMS\Core\Utility\GeneralUtility::isValidUrl($submittedData['url'])) {
-			$validData = FALSE;
-		}
+        if (!GeneralUtility::isValidUrl($submittedData['url'])) {
+            $validData = false;
+        }
 
-		return $validData;
-	}
+        return $validData;
+    }
 
-	/**
-	 * @param array $submittedData An array containing the data submitted by the add/edit task form
-	 * @param \TYPO3\CMS\Scheduler\Task\AbstractTask $task Reference to the scheduler backend module
-	 * @return void
-	 */
-	public function saveAdditionalFields(array $submittedData, \TYPO3\CMS\Scheduler\Task\AbstractTask $task) {
-		$task->url = $submittedData['url'];
-	}
+    /**
+     * @param array $submittedData An array containing the data submitted by the add/edit task form
+     * @param AbstractTask $task Reference to the scheduler backend module
+     * @return void
+     */
+    public function saveAdditionalFields(array $submittedData, AbstractTask $task)
+    {
+        $task->url = $submittedData['url'];
+    }
 }
