@@ -15,4 +15,4 @@ call_user_func(function ($_EXTKEY) {
         'description' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf:getUrlTask.description',
         'additionalFields' => \WebentwicklerAt\SchedulerHttp\Task\GetUrlTaskAdditionalFieldProvider::class,
     ];
-}, $_EXTKEY);
+}, 'scheduler_http');
