@@ -52,7 +52,7 @@ class GetUrlTaskAdditionalFieldProvider implements AdditionalFieldProviderInterf
 
         if (!isset($taskInfo[$fieldId])) {
             $taskInfo[$fieldId] = $this->defaults[$fieldId];
-            if ($schedulerModule->CMD === 'edit') {
+            if ($schedulerModule->getCurrentAction()->equals('edit')) {
                 $taskInfo[$fieldId] = $task->$fieldId;
             }
         }
