@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    
+  WebentwicklerAt\SchedulerHttp\Task\:
+    resource: '../Classes/Task'
+  
+    tags:
+      - name: scheduler.task
+        title: 'LLL:EXT:scheduler_http/Resources/Private/Language/locallang.xlf:getUrlTask.name'
+        description: 'LLL:EXT:scheduler_http/Resources/Private/Language/locallang.xlf:getUrlTask.description'
+        additionalFields: WebentwicklerAt\SchedulerHttp\Task\GetUrlTaskAdditionalFieldProvider
