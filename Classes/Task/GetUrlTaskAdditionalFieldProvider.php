@@ -1,6 +1,6 @@
 <?php
 namespace WebentwicklerAt\SchedulerHttp\Task;
-
+use TYPO3\CMS\Scheduler\Task\Enumeration\Action;
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -39,11 +39,14 @@ class GetUrlTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Addition
 	 */
 	public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
 		$fieldId = 'url';
+		
+		$additionalFields = [];
+		$schedulerModule = $schedulerModule->getCurrentAction();
 
 		if (!isset($taskInfo[$fieldId])) {
 			$taskInfo[$fieldId] = $this->defaults[$fieldId];
-			if ($schedulerModule->CMD === 'edit') {
-				$taskInfo[$fieldId] = $task->$fieldId;
+			if ($schedulerModule->equals(Action::EDIT)) {
+				$taskInfo[$fieldId] = $task->getUrl();
 			}
 		}
 
