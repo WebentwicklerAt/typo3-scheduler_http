@@ -1,0 +1,30 @@
+/Documentation-GENERATED-temp/
+# https://github.com/TYPO3/TYPO3.CMS.BaseDistribution/blob/master/.gitignore
+# IDE & OS
+/.DS_Store
+/.idea/
+/cgi-bin/
+/nbproject/
+*.swp
+# Core
+/public/
+# Composer
+/vendor/
+# Config
+/config
+# Keys
+/keys/private.key
+# Node
+/node_modules/
+/npm-debug.log
+# User
+/shared
+/fileadmin
+/fileadmin_protected
+/uploads
+# Temp
+/typo3temp
+/var
+# Other
+/composer.lock
+.php-cs-fixer.cache

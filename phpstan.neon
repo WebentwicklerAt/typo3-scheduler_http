@@ -1,0 +1,20 @@
+includes:
+  - vendor/saschaegerer/phpstan-typo3/extension.neon
+
+parameters:
+  level: 5
+
+  paths:
+    - %currentWorkingDirectory%
+
+  excludePaths:
+    - %currentWorkingDirectory%/public
+    - %currentWorkingDirectory%/vendor
+
+  ignoreErrors:
+    - '#Variable \$_EXTKEY might not be defined.#'
+
+  typo3:
+    requestGetAttributeMapping:
+      'frontend.cache.instruction': TYPO3\CMS\Frontend\Cache\CacheInstruction|null
+      'frontend.page.information': TYPO3\CMS\Core\Page\PageLayout\PageInformation|null
